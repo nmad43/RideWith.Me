@@ -34,4 +34,7 @@ local.properties
 */RideWith.Mesearchindex/*
 */test-output/*
 
-
+genfiles/*
+war/WEB-INF/classes/*
+war/WEB-INF/appengine-generated/*
+war/RideWith.Me/*
