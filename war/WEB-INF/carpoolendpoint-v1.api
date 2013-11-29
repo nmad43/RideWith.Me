@@ -1,0 +1,203 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://myapp.appspot.com/_ah/api",
+  "name" : "carpoolendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://myapp.appspot.com/_ah/spi",
+    "deadline" : 10.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "g5.com",
+  "ownerName" : "g5.com",
+  "packagePath" : "ridewithme",
+  "methods" : {
+    "carpoolendpoint.listCarpool" : {
+      "path" : "carpool",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.g5.ridewithme.CarpoolEndpoint.listCarpool",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "carpoolendpoint.getCarpool" : {
+      "path" : "carpool/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.g5.ridewithme.CarpoolEndpoint.getCarpool",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "carpoolendpoint.updateCarpool" : {
+      "path" : "carpool",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.g5.ridewithme.CarpoolEndpoint.updateCarpool",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "carpoolendpoint.removeCarpool" : {
+      "path" : "carpool/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.g5.ridewithme.CarpoolEndpoint.removeCarpool",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "carpoolendpoint.insertCarpool" : {
+      "path" : "carpool",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.g5.ridewithme.CarpoolEndpoint.insertCarpool",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "CollectionResponse_Carpool" : {
+        "id" : "CollectionResponse_Carpool",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Carpool"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Carpool" : {
+        "id" : "Carpool",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "driver" : {
+            "type" : "string"
+          },
+          "riders" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "destination" : {
+            "type" : "string"
+          },
+          "lastRoute" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.g5.ridewithme.CarpoolEndpoint.listCarpool" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Carpool"
+        }
+      },
+      "com.g5.ridewithme.CarpoolEndpoint.getCarpool" : {
+        "response" : {
+          "$ref" : "Carpool"
+        }
+      },
+      "com.g5.ridewithme.CarpoolEndpoint.updateCarpool" : {
+        "request" : {
+          "$ref" : "Carpool"
+        },
+        "response" : {
+          "$ref" : "Carpool"
+        }
+      },
+      "com.g5.ridewithme.CarpoolEndpoint.removeCarpool" : {
+      },
+      "com.g5.ridewithme.CarpoolEndpoint.insertCarpool" : {
+        "request" : {
+          "$ref" : "Carpool"
+        },
+        "response" : {
+          "$ref" : "Carpool"
+        }
+      }
+    }
+  }
+}
