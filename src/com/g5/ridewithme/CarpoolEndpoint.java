@@ -75,7 +75,7 @@ public class CarpoolEndpoint {
 	 * @return The entity with primary key id.
 	 */
 	@ApiMethod(name = "getCarpool")
-	public Carpool getCarpool(@Named("id") String id) {
+	public Carpool getCarpool(@Named("id") Long id) {
 		EntityManager mgr = getEntityManager();
 		Carpool carpool = null;
 		try {
@@ -137,7 +137,7 @@ public class CarpoolEndpoint {
 	 * @param id the primary key of the entity to be deleted.
 	 */
 	@ApiMethod(name = "removeCarpool")
-	public void removeCarpool(@Named("id") String id) {
+	public void removeCarpool(@Named("id") Long id) {
 		EntityManager mgr = getEntityManager();
 		try {
 			Carpool carpool = mgr.find(Carpool.class, id);
@@ -151,7 +151,7 @@ public class CarpoolEndpoint {
 		EntityManager mgr = getEntityManager();
 		boolean contains = true;
 		try {
-			Carpool item = mgr.find(Carpool.class, carpool.getId());
+			Carpool item = mgr.find(Carpool.class, carpool.getKey());
 			if (item == null) {
 				contains = false;
 			}

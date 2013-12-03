@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/zwRCyp3B8hGNfaTjxCY9bHQJy1A\"",
+ "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/kGMyI9LYXm_GtKM5WckV4zrOT08\"",
  "discoveryVersion": "v1",
  "id": "carpoolendpoint:v1",
  "name": "carpoolendpoint",
@@ -82,10 +82,10 @@
      "type": "string"
     },
     "driver": {
-     "type": "string"
+     "$ref": "Customer"
     },
-    "id": {
-     "type": "string"
+    "key": {
+     "$ref": "Key"
     },
     "lastRoute": {
      "type": "string"
@@ -93,7 +93,7 @@
     "riders": {
      "type": "array",
      "items": {
-      "type": "string"
+      "$ref": "Customer"
      }
     }
    }
@@ -112,6 +112,58 @@
      "type": "string"
     }
    }
+  },
+  "Customer": {
+   "id": "Customer",
+   "type": "object",
+   "properties": {
+    "car": {
+     "type": "string"
+    },
+    "email": {
+     "type": "string"
+    },
+    "firstName": {
+     "type": "string"
+    },
+    "key": {
+     "$ref": "Key"
+    },
+    "lastName": {
+     "type": "string"
+    },
+    "location": {
+     "type": "string"
+    }
+   }
+  },
+  "Key": {
+   "id": "Key",
+   "type": "object",
+   "properties": {
+    "appId": {
+     "type": "string"
+    },
+    "complete": {
+     "type": "boolean"
+    },
+    "id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "kind": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "namespace": {
+     "type": "string"
+    },
+    "parent": {
+     "$ref": "Key"
+    }
+   }
   }
  },
  "methods": {
@@ -123,6 +175,7 @@
     "id": {
      "type": "string",
      "required": true,
+     "format": "int64",
      "location": "path"
     }
    },
@@ -181,6 +234,7 @@
     "id": {
      "type": "string",
      "required": true,
+     "format": "int64",
      "location": "path"
     }
    },

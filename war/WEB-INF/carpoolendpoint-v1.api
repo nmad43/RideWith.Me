@@ -63,7 +63,7 @@
       "request" : {
         "parameters" : {
           "id" : {
-            "type" : "string",
+            "type" : "int64",
             "required" : true
           }
         },
@@ -100,7 +100,7 @@
       "request" : {
         "parameters" : {
           "id" : {
-            "type" : "string",
+            "type" : "int64",
             "required" : true
           }
         },
@@ -148,22 +148,74 @@
         "id" : "Carpool",
         "type" : "object",
         "properties" : {
-          "id" : {
-            "type" : "string"
+          "key" : {
+            "$ref" : "Key"
           },
           "driver" : {
-            "type" : "string"
+            "$ref" : "Customer"
           },
           "riders" : {
             "type" : "array",
             "items" : {
-              "type" : "string"
+              "$ref" : "Customer"
             }
           },
           "destination" : {
             "type" : "string"
           },
           "lastRoute" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Key" : {
+        "id" : "Key",
+        "type" : "object",
+        "properties" : {
+          "kind" : {
+            "type" : "string"
+          },
+          "appId" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "complete" : {
+            "type" : "boolean"
+          },
+          "namespace" : {
+            "type" : "string"
+          },
+          "parent" : {
+            "$ref" : "Key"
+          }
+        }
+      },
+      "Customer" : {
+        "id" : "Customer",
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "$ref" : "Key"
+          },
+          "firstName" : {
+            "type" : "string"
+          },
+          "lastName" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "location" : {
+            "type" : "string"
+          },
+          "car" : {
             "type" : "string"
           }
         }
