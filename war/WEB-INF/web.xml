@@ -15,7 +15,7 @@
   <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
   <init-param>
    <param-name>services</param-name>
-   <param-value>com.g5.ridewithme.CarpoolEndpoint,com.g5.ridewithme.NotificationEndpoint,com.g5.ridewithme.UserEndpoint</param-value>
+   <param-value>com.g5.ridewithme.CarpoolEndpoint,com.g5.ridewithme.UserEndpoint</param-value>
   </init-param>
  </servlet>
  <servlet-mapping>

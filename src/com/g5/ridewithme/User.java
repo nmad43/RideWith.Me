@@ -10,7 +10,6 @@ public class User {
 	private String id;
 	private String firstName;
 	private String lastName;
-	private String password;
 	private String email;
 	private String location;
 	private String car;
@@ -31,10 +30,6 @@ public class User {
 		return lastName;
 	}
 	
-	public String getPassword() {
-		return password;
-	}
-	
 	public String getEmail() {
 		return email;
 	}
@@ -45,10 +40,6 @@ public class User {
 	
 	public String getCar() {
 		return car;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	
 	public void setLocation(String location) {
