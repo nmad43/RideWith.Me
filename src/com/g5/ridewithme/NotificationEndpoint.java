@@ -16,14 +16,22 @@ public class NotificationEndpoint {
 	private NotificationBuilder builder;
 
 	public void requestBuild(ArrayList<Object> request){
-		builder.makeRequest(request);
-	}
+		if(!builder.makeRequest(request)) handleRequests();
+	}//end requestBuild
+	
+	public void handleRequests(){
+		builder.startProcessing();
+		while(builder.requestsInQueue()){
+			sendEmail(builder.build());
+		}//end while
+		builder.endProcessing();
+	}//end handleRequests
 	
 	public void getSendMethod(){
 		
 	}
 	
-	public void sendEmail(){
+	public void sendEmail(Notification message){
 		
 	}
 }

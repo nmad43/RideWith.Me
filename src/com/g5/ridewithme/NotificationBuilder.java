@@ -7,20 +7,13 @@ public class NotificationBuilder {
 	private boolean processing = false;
 	private Queue<ArrayList<Object>> requests;
 	
-	public void makeRequest(ArrayList<Object> request){
+	public boolean makeRequest(ArrayList<Object> request){
 		requests.add(request);
-		if(!isProcessing()) handleRequests();
+		return processing;
 	}//end makeRequest
 	
-	public void handleRequests(){
-		processing = true;
-		while(!requests.isEmpty()){
-			build(requests.remove());
-		}//end while
-		processing = false;
-	}//end handleRequests
-	
-	public void build(ArrayList<Object> request){
+	public Notification build(){
+		ArrayList<Object> request = requests.remove();
 		String type = (String)request.get(0);
 		String recipient = (String)request.get(1);
 		String body = "";
@@ -60,14 +53,18 @@ public class NotificationBuilder {
 				body += "\tDeparture Time: " + (String)request.get(5) + "\n";
 				body += "For more details, log in to RideWith.Me and visit the My Carpools page.";
 		}//end switch
-		sendEmail(new Notification(recipient, body));
+		return new Notification(recipient, body);
 	}//end build
 	
-	public void sendEmail(Notification message){
-		
-	}
+	public boolean requestsInQueue(){
+		return !requests.isEmpty();
+	}//end requestsInQueue
 	
-	public boolean isProcessing(){
-		return processing;
-	}//end isProcessing
+	public void startProcessing(){
+		processing = true;
+	}//end startProcessing
+	
+	public void endProcessing(){
+		processing = false;
+	}//end endProcessing
 }//end NotificationBuilder
