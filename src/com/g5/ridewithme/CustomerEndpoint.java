@@ -1,12 +1,14 @@
 package com.g5.ridewithme;
 
 import com.g5.ridewithme.EMF;
-
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.response.CollectionResponse;
 import com.google.appengine.api.datastore.Cursor;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.oauth.OAuthRequestException;
+import com.google.appengine.api.users.User;
 import com.google.appengine.datanucleus.query.JPACursorHelper;
 
 import java.util.List;
@@ -67,6 +69,36 @@ public class CustomerEndpoint {
 		return CollectionResponse.<Customer> builder().setItems(execute)
 				.setNextPageToken(cursorString).build();
 	}
+	
+	public boolean isACustomer(User user)
+	{
+		EntityManager mgr = getEntityManager();
+		boolean contains = true;
+		try {
+			Customer item = mgr.find(Customer.class, user.getUserId());
+			if (item == null) {
+				contains = false;
+			}
+		} finally {
+			mgr.close();
+		}
+		return contains;
+	}
+	
+	public boolean verifyCustomer(Key id, String UserId)
+	{
+		EntityManager mgr = getEntityManager();
+		boolean contains = true;
+		try {
+			Customer item = mgr.find(Customer.class, UserId);
+			if (!item.getId().equals(id)) {
+				contains = false;
+			}
+		} finally {
+			mgr.close();
+		}
+		return contains;
+	}
 
 	/**
 	 * This method gets the entity having primary key id. It uses HTTP GET method.
@@ -75,13 +107,18 @@ public class CustomerEndpoint {
 	 * @return The entity with primary key id.
 	 */
 	@ApiMethod(name = "getCustomer")
-	public Customer getCustomer(@Named("id") Long id) {
+	public Customer getCustomer(@Named("id") Long id, User user) throws OAuthRequestException{
 		EntityManager mgr = getEntityManager();
 		Customer customer = null;
-		try {
-			customer = mgr.find(Customer.class, id);
-		} finally {
-			mgr.close();
+		if(isACustomer(user))
+		{
+			try {
+				customer = mgr.find(Customer.class, id);
+			} finally {
+				mgr.close();
+			}
+		} else {
+			// not a user of the service
 		}
 		return customer;
 	}
@@ -95,7 +132,7 @@ public class CustomerEndpoint {
 	 * @return The inserted entity.
 	 */
 	@ApiMethod(name = "insertCustomer")
-	public Customer insertCustomer(Customer customer) {
+	public Customer insertCustomer(Customer customer, User user) {
 		EntityManager mgr = getEntityManager();
 		try {
 			if (containsCustomer(customer)) {
@@ -115,43 +152,33 @@ public class CustomerEndpoint {
 	 *
 	 * @param customer the entity to be updated.
 	 * @return The updated entity.
+	 * @throws OAuthRequestException 
 	 */
 	@ApiMethod(name = "updateCustomer")
-	public Customer updateCustomer(Customer customer) {
+	public Customer updateCustomer(Customer customer, User user) throws OAuthRequestException {
 		EntityManager mgr = getEntityManager();
-		try {
-			if (!containsCustomer(customer)) {
-				throw new EntityNotFoundException("Object does not exist");
+		if(verifyCustomer(customer.getId(), user.getUserId()))
+		{
+			try {
+				if (!containsCustomer(customer)) {
+					throw new EntityNotFoundException("Object does not exist");
+				}
+				mgr.persist(customer);
+			} finally {
+				mgr.close();
 			}
-			mgr.persist(customer);
-		} finally {
-			mgr.close();
+		} else {
+			throw new OAuthRequestException("No access to update user");
 		}
 		return customer;
 	}
 
-	/**
-	 * This method removes the entity with primary key id.
-	 * It uses HTTP DELETE method.
-	 *
-	 * @param id the primary key of the entity to be deleted.
-	 */
-	@ApiMethod(name = "removeCustomer")
-	public void removeCustomer(@Named("id") Long id) {
-		EntityManager mgr = getEntityManager();
-		try {
-			Customer customer = mgr.find(Customer.class, id);
-			mgr.remove(customer);
-		} finally {
-			mgr.close();
-		}
-	}
 
 	private boolean containsCustomer(Customer customer) {
 		EntityManager mgr = getEntityManager();
 		boolean contains = true;
 		try {
-			Customer item = mgr.find(Customer.class, customer.getKey());
+			Customer item = mgr.find(Customer.class, customer.getId());
 			if (item == null) {
 				contains = false;
 			}

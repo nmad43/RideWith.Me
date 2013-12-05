@@ -1,5 +1,7 @@
 package com.g5.ridewithme;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
@@ -11,20 +13,20 @@ import com.google.appengine.api.datastore.Key;
 public class Customer {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Key key;
+	private Key id;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String location;
 	private String car;
+	private List<Key> carpools;
 	
 	public Customer() {
 		
 	}
 	
-	public Key getKey() {
-		return key;
+	public Key getId() {
+		return id;
 	}
 	
 	public String getFirstName() {
