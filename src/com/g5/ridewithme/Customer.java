@@ -1,5 +1,6 @@
 package com.g5.ridewithme;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 @Entity
 public class Customer {
@@ -22,6 +24,17 @@ public class Customer {
 	private List<Key> carpools;
 	
 	public Customer() {
+		this.carpools = new ArrayList<Key>();
+	}
+	
+	public Customer(String id, String firstName, String lastName, String email, String location, String car) {
+		this.id = KeyFactory.stringToKey(id);
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.location = location;
+		this.car = car;
+		this.carpools = new ArrayList<Key>();
 		
 	}
 	
@@ -55,5 +68,18 @@ public class Customer {
 	
 	public void setCar(String car) {
 		this.car = car;
+	}
+	
+	public List<Key> getCarpools()
+	{
+		return carpools;
+	}
+	
+	public void addCarpool(Key carpoolId) {
+		carpools.add(carpoolId);
+	}
+	
+	public void removeCarpool(Key carpoolId) {
+		carpools.remove(id);
 	}
 }
