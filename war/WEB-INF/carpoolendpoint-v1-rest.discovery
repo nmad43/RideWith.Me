@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/kGMyI9LYXm_GtKM5WckV4zrOT08\"",
+ "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/jsfOlxv4ZxDukwe_FsCvOGrO9-Y\"",
  "discoveryVersion": "v1",
  "id": "carpoolendpoint:v1",
  "name": "carpoolendpoint",
@@ -14,9 +14,9 @@
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rest",
- "baseUrl": "https://myapp.appspot.com/_ah/api/carpoolendpoint/v1/",
+ "baseUrl": "https://fiuridewithme.appspot.com/_ah/api/carpoolendpoint/v1/",
  "basePath": "/_ah/api/carpoolendpoint/v1/",
- "rootUrl": "https://myapp.appspot.com/_ah/api/",
+ "rootUrl": "https://fiuridewithme.appspot.com/_ah/api/",
  "servicePath": "carpoolendpoint/v1/",
  "batchPath": "batch",
  "parameters": {

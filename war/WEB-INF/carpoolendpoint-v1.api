@@ -1,12 +1,12 @@
 {
   "extends" : "thirdParty.api",
   "abstract" : false,
-  "root" : "https://myapp.appspot.com/_ah/api",
+  "root" : "https://fiuridewithme.appspot.com/_ah/api",
   "name" : "carpoolendpoint",
   "version" : "v1",
   "defaultVersion" : false,
   "adapter" : {
-    "bns" : "https://myapp.appspot.com/_ah/spi",
+    "bns" : "https://fiuridewithme.appspot.com/_ah/spi",
     "deadline" : 10.0,
     "type" : "lily"
   },
@@ -152,12 +152,12 @@
             "$ref" : "Key"
           },
           "driver" : {
-            "$ref" : "Customer"
+            "$ref" : "Key"
           },
           "riders" : {
             "type" : "array",
             "items" : {
-              "$ref" : "Customer"
+              "$ref" : "Key"
             }
           },
           "destination" : {
@@ -193,30 +193,6 @@
           },
           "parent" : {
             "$ref" : "Key"
-          }
-        }
-      },
-      "Customer" : {
-        "id" : "Customer",
-        "type" : "object",
-        "properties" : {
-          "key" : {
-            "$ref" : "Key"
-          },
-          "firstName" : {
-            "type" : "string"
-          },
-          "lastName" : {
-            "type" : "string"
-          },
-          "email" : {
-            "type" : "string"
-          },
-          "location" : {
-            "type" : "string"
-          },
-          "car" : {
-            "type" : "string"
           }
         }
       }

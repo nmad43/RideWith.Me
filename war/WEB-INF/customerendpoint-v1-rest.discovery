@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/im-aXjS5Y2CC-RVmucour9PP3dE\"",
+ "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/l9TF8h05vUKjagewJ3tyoVlWnws\"",
  "discoveryVersion": "v1",
  "id": "customerendpoint:v1",
  "name": "customerendpoint",
@@ -14,9 +14,9 @@
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rest",
- "baseUrl": "https://myapp.appspot.com/_ah/api/customerendpoint/v1/",
+ "baseUrl": "https://fiuridewithme.appspot.com/_ah/api/customerendpoint/v1/",
  "basePath": "/_ah/api/customerendpoint/v1/",
- "rootUrl": "https://myapp.appspot.com/_ah/api/",
+ "rootUrl": "https://fiuridewithme.appspot.com/_ah/api/",
  "servicePath": "customerendpoint/v1/",
  "batchPath": "batch",
  "parameters": {
