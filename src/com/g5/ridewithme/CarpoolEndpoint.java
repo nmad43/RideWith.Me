@@ -1,13 +1,18 @@
 package com.g5.ridewithme;
 
 import com.g5.ridewithme.EMF;
-
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.response.CollectionResponse;
 import com.google.appengine.api.datastore.Cursor;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.datanucleus.query.JPACursorHelper;
+import com.google.appengine.api.oauth.OAuthRequestException;
+import com.google.appengine.api.users.User;
+
+
+
 
 import java.util.List;
 
@@ -75,16 +80,24 @@ public class CarpoolEndpoint {
 	 * @return The entity with primary key id.
 	 */
 	@ApiMethod(name = "getCarpool")
-	public Carpool getCarpool(@Named("id") Long id) {
+	public Carpool getCarpool(@Named("id") Long id, User user) throws OAuthRequestException{
 		EntityManager mgr = getEntityManager();
 		Carpool carpool = null;
 		try {
 			carpool = mgr.find(Carpool.class, id);
+			if(!((CustomerEndpoint.verifyCustomer(carpool.getDriver(), user.getUserId()) || isRider(carpool.getRiders(), user)))){
+				throw new OAuthRequestException("User does not have acces to this carpool.");
+			}//end if
 		} finally {
 			mgr.close();
 		}
 		return carpool;
-	}
+	}//end getCarpool
+	
+	public boolean isRider(List<Key> riders, User user) throws OAuthRequestException{
+		for(Key rider:riders) if(CustomerEndpoint.verifyCustomer(rider, user.getUserId())) return true;
+		return false;
+	}//end isRider
 
 	/**
 	 * This inserts a new entity into App Engine datastore. If the entity already
@@ -95,7 +108,7 @@ public class CarpoolEndpoint {
 	 * @return The inserted entity.
 	 */
 	@ApiMethod(name = "insertCarpool")
-	public Carpool insertCarpool(Carpool carpool) {
+	public Carpool insertCarpool(Carpool carpool, User user) throws OAuthRequestException{
 		EntityManager mgr = getEntityManager();
 		try {
 			if (containsCarpool(carpool)) {
@@ -117,11 +130,14 @@ public class CarpoolEndpoint {
 	 * @return The updated entity.
 	 */
 	@ApiMethod(name = "updateCarpool")
-	public Carpool updateCarpool(Carpool carpool) {
+	public Carpool updateCarpool(Carpool carpool, User user) throws OAuthRequestException{
 		EntityManager mgr = getEntityManager();
 		try {
 			if (!containsCarpool(carpool)) {
 				throw new EntityNotFoundException("Object does not exist");
+			}
+			if(!((CustomerEndpoint.verifyCustomer(carpool.getDriver(), user.getUserId()) || isRider(carpool.getRiders(), user)))){
+				throw new OAuthRequestException("User does not have acces to this carpool.");
 			}
 			mgr.persist(carpool);
 		} finally {
@@ -137,10 +153,13 @@ public class CarpoolEndpoint {
 	 * @param id the primary key of the entity to be deleted.
 	 */
 	@ApiMethod(name = "removeCarpool")
-	public void removeCarpool(@Named("id") Long id) {
+	public void removeCarpool(@Named("id") Long id, User user) throws OAuthRequestException{
 		EntityManager mgr = getEntityManager();
 		try {
 			Carpool carpool = mgr.find(Carpool.class, id);
+			if(!((CustomerEndpoint.verifyCustomer(carpool.getDriver(), user.getUserId()) || isRider(carpool.getRiders(), user)))){
+				throw new OAuthRequestException("User does not have acces to this carpool.");
+			}//end if
 			mgr.remove(carpool);
 		} finally {
 			mgr.close();
@@ -151,15 +170,15 @@ public class CarpoolEndpoint {
 		EntityManager mgr = getEntityManager();
 		boolean contains = true;
 		try {
-			Carpool item = mgr.find(Carpool.class, carpool.getKey());
+			Carpool item = mgr.find(Carpool.class, carpool.getId());
 			if (item == null) {
 				contains = false;
-			}
+			}//end if
 		} finally {
 			mgr.close();
 		}
 		return contains;
-	}
+	}//end containsCarpool
 
 	private static EntityManager getEntityManager() {
 		return EMF.get().createEntityManager();

@@ -85,7 +85,7 @@ public class CustomerEndpoint {
 		return contains;
 	}
 	
-	public boolean verifyCustomer(Key id, String UserId)
+	public static boolean verifyCustomer(Key id, String UserId)
 	{
 		EntityManager mgr = getEntityManager();
 		boolean contains = true;

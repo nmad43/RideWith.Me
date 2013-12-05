@@ -16,7 +16,7 @@ public class Carpool {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Key key;
+	private Key id;
 	
 	@OneToOne
 	private Key driver;
@@ -30,8 +30,8 @@ public class Carpool {
 		
 	}
 	
-	public Key getKey() {
-		return key;
+	public Key getId() {
+		return id;
 	}
 	
 	public Key getDriver() {
