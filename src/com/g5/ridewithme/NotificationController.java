@@ -17,7 +17,7 @@ public class NotificationController {
 
 	private NotificationBuilder builder;
 
-	public void requestBuild(ArrayList<Object> request){
+	public void requestBuild(Request request){
 		if(!builder.makeRequest(request)) handleRequests();
 	}//end requestBuild
 	
