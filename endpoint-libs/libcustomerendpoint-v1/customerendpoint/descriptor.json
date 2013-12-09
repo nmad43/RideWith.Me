@@ -1,13 +1,13 @@
 {
   "files": [
     {
-      "downloadUrl": "/downloads/customerendpoint/v1/20131203234158/java/1.16.0-rc/g5.com-customerendpoint-v1-20131203234158-java-1.16.0-rc-sources.jar", 
-      "path": "g5.com-customerendpoint-v1-20131203234158-java-1.16.0-rc-sources.jar", 
+      "downloadUrl": "/downloads/customerendpoint/v1/20131208233211/java/1.16.0-rc/g5.com-customerendpoint-v1-20131208233211-java-1.16.0-rc-sources.jar", 
+      "path": "g5.com-customerendpoint-v1-20131208233211-java-1.16.0-rc-sources.jar", 
       "type": "source", 
-      "timestamp": "2013-12-03 23:41"
+      "timestamp": "2013-12-08 23:32"
     }, 
     {
-      "path": "g5.com-customerendpoint-v1-20131203234158-java-1.16.0-rc.jar.properties", 
+      "path": "g5.com-customerendpoint-v1-20131208233211-java-1.16.0-rc.jar.properties", 
       "type": "android.properties"
     }
   ], 
@@ -702,5 +702,5 @@
   "packagePath": "ridewithme", 
   "language_version": "1.16.0-rc", 
   "id": "customerendpoint:v1", 
-  "revision": 20131203234158
+  "revision": 20131208233211
 }

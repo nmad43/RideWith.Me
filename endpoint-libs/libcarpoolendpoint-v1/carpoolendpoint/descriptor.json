@@ -1,13 +1,13 @@
 {
   "files": [
     {
-      "downloadUrl": "/downloads/carpoolendpoint/v1/20131203234152/java/1.16.0-rc/g5.com-carpoolendpoint-v1-20131203234152-java-1.16.0-rc-sources.jar", 
-      "path": "g5.com-carpoolendpoint-v1-20131203234152-java-1.16.0-rc-sources.jar", 
+      "downloadUrl": "/downloads/carpoolendpoint/v1/20131208233204/java/1.16.0-rc/g5.com-carpoolendpoint-v1-20131208233204-java-1.16.0-rc-sources.jar", 
+      "path": "g5.com-carpoolendpoint-v1-20131208233204-java-1.16.0-rc-sources.jar", 
       "type": "source", 
-      "timestamp": "2013-12-03 23:41"
+      "timestamp": "2013-12-08 23:32"
     }, 
     {
-      "path": "g5.com-carpoolendpoint-v1-20131203234152-java-1.16.0-rc.jar.properties", 
+      "path": "g5.com-carpoolendpoint-v1-20131208233204-java-1.16.0-rc.jar.properties", 
       "type": "android.properties"
     }
   ], 
@@ -702,5 +702,5 @@
   "packagePath": "ridewithme", 
   "language_version": "1.16.0-rc", 
   "id": "carpoolendpoint:v1", 
-  "revision": 20131203234152
+  "revision": 20131208233204
 }

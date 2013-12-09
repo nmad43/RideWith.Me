@@ -148,16 +148,16 @@
         "id" : "Carpool",
         "type" : "object",
         "properties" : {
-          "key" : {
+          "id" : {
             "$ref" : "Key"
           },
           "driver" : {
-            "$ref" : "Key"
+            "type" : "string"
           },
           "riders" : {
             "type" : "array",
             "items" : {
-              "$ref" : "Key"
+              "type" : "string"
             }
           },
           "destination" : {
@@ -185,14 +185,14 @@
           "name" : {
             "type" : "string"
           },
+          "parent" : {
+            "$ref" : "Key"
+          },
           "complete" : {
             "type" : "boolean"
           },
           "namespace" : {
             "type" : "string"
-          },
-          "parent" : {
-            "$ref" : "Key"
           }
         }
       }

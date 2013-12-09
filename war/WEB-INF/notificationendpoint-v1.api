@@ -1,0 +1,146 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://fiuridewithme.appspot.com/_ah/api",
+  "name" : "notificationendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://fiuridewithme.appspot.com/_ah/spi",
+    "deadline" : 10.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "g5.com",
+  "ownerName" : "g5.com",
+  "packagePath" : "ridewithme",
+  "methods" : {
+    "notificationendpoint.notificationController.handleRequests" : {
+      "path" : "handleRequests",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.g5.ridewithme.NotificationController.handleRequests",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "notificationendpoint.notificationController.sendEmail" : {
+      "path" : "sendEmail",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.g5.ridewithme.NotificationController.sendEmail",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "notificationendpoint.notificationController.requestBuild" : {
+      "path" : "requestBuild",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.g5.ridewithme.NotificationController.requestBuild",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "notificationendpoint.notificationController.getSendMethod" : {
+      "path" : "void",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.g5.ridewithme.NotificationController.getSendMethod",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Notification" : {
+        "id" : "Notification",
+        "type" : "object",
+        "properties" : {
+          "sender" : {
+            "type" : "string"
+          },
+          "recipient" : {
+            "type" : "string"
+          },
+          "body" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Request" : {
+        "id" : "Request",
+        "type" : "object",
+        "properties" : {
+          "type" : {
+            "type" : "string"
+          },
+          "recipient" : {
+            "type" : "string"
+          },
+          "date" : {
+            "type" : "string"
+          },
+          "destination" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.g5.ridewithme.NotificationController.handleRequests" : {
+      },
+      "com.g5.ridewithme.NotificationController.sendEmail" : {
+        "request" : {
+          "$ref" : "Notification"
+        }
+      },
+      "com.g5.ridewithme.NotificationController.requestBuild" : {
+        "request" : {
+          "$ref" : "Request"
+        }
+      },
+      "com.g5.ridewithme.NotificationController.getSendMethod" : {
+      }
+    }
+  }
+}

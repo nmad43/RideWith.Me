@@ -19,10 +19,10 @@ public class Carpool {
 	private Key id;
 	
 	@OneToOne
-	private Key driver;
+	private String driver;
 	
 	
-	private List<Key> riders;
+	private List<String> riders;
 	private String destination;
 	private String lastRoute;
 	
@@ -34,11 +34,11 @@ public class Carpool {
 		return id;
 	}
 	
-	public Key getDriver() {
+	public String getDriver() {
 		return driver;
 	}
 	
-	public List<Key> getRiders() {
+	public List<String> getRiders() {
 		return riders;
 	}
 	
@@ -50,7 +50,7 @@ public class Carpool {
 		return lastRoute;
 	}
 	
-	public void addRider(Key rider) {
+	public void addRider(String rider) {
 		riders.add(rider);
 	}
 	

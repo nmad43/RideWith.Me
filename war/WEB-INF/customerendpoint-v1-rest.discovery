@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/l9TF8h05vUKjagewJ3tyoVlWnws\"",
+ "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/wm4LfMiNoeM7CFbVdoKg2XFJW58\"",
  "discoveryVersion": "v1",
  "id": "customerendpoint:v1",
  "name": "customerendpoint",
@@ -96,13 +96,19 @@
     "car": {
      "type": "string"
     },
+    "carpools": {
+     "type": "array",
+     "items": {
+      "$ref": "Key"
+     }
+    },
     "email": {
      "type": "string"
     },
     "firstName": {
      "type": "string"
     },
-    "key": {
+    "id": {
      "$ref": "Key"
     },
     "lastName": {
@@ -198,25 +204,6 @@
    "response": {
     "$ref": "CollectionResponse_Customer"
    },
-   "scopes": [
-    "https://www.googleapis.com/auth/userinfo.email"
-   ]
-  },
-  "removeCustomer": {
-   "id": "customerendpoint.removeCustomer",
-   "path": "customer/{id}",
-   "httpMethod": "DELETE",
-   "parameters": {
-    "id": {
-     "type": "string",
-     "required": true,
-     "format": "int64",
-     "location": "path"
-    }
-   },
-   "parameterOrder": [
-    "id"
-   ],
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
    ]

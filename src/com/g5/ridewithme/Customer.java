@@ -15,7 +15,7 @@ import com.google.appengine.api.datastore.KeyFactory;
 public class Customer {
 	
 	@Id
-	private Key id;
+	private String id;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -28,7 +28,7 @@ public class Customer {
 	}
 	
 	public Customer(String id, String firstName, String lastName, String email, String location, String car) {
-		this.id = KeyFactory.stringToKey(id);
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -38,7 +38,7 @@ public class Customer {
 		
 	}
 	
-	public Key getId() {
+	public String getId() {
 		return id;
 	}
 	

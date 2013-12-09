@@ -14,6 +14,7 @@ import com.google.appengine.api.users.User;
 
 
 
+
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -94,8 +95,8 @@ public class CarpoolEndpoint {
 		return carpool;
 	}//end getCarpool
 	
-	public boolean isRider(List<Key> riders, User user) throws OAuthRequestException{
-		for(Key rider:riders) if(CustomerEndpoint.verifyCustomer(rider, user.getUserId())) return true;
+	private boolean isRider(List<String> list, User user) throws OAuthRequestException{
+		for(String rider:list) if(CustomerEndpoint.verifyCustomer(rider, user.getUserId())) return true;
 		return false;
 	}//end isRider
 

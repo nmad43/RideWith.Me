@@ -85,7 +85,7 @@ public class CustomerEndpoint {
 		return contains;
 	}
 	
-	public static boolean verifyCustomer(Key id, String UserId)
+	public static boolean verifyCustomer(String id, String UserId)
 	{
 		EntityManager mgr = getEntityManager();
 		boolean contains = true;
@@ -107,9 +107,12 @@ public class CustomerEndpoint {
 	 * @return The entity with primary key id.
 	 */
 	@ApiMethod(name = "getCustomer")
-	public Customer getCustomer(@Named("id") Long id, User user) throws OAuthRequestException{
+	public Customer getCustomer(@Named("id") String id, User user) throws OAuthRequestException{
 		EntityManager mgr = getEntityManager();
 		Customer customer = null;
+		if(user == null)
+			throw new OAuthRequestException("Not a user");
+		
 		if(isACustomer(user))
 		{
 			try {
@@ -130,19 +133,24 @@ public class CustomerEndpoint {
 	 *
 	 * @param customer the entity to be inserted.
 	 * @return The inserted entity.
+	 * @throws OAuthRequestException 
 	 */
 	@ApiMethod(name = "insertCustomer")
-	public Customer insertCustomer(Customer customer, User user) {
+	public Customer insertCustomer(Customer customer, User user) throws OAuthRequestException {
 		EntityManager mgr = getEntityManager();
+		if(user == null)
+			throw new OAuthRequestException("Must be signed in");
+		Customer cust = new Customer(user.getUserId(), customer.getFirstName(), customer.getLastName(), user.getEmail(), customer.getLocation(), customer.getCar());
+		
 		try {
-			if (containsCustomer(customer)) {
+			if (containsCustomer(cust)) {
 				throw new EntityExistsException("Object already exists");
 			}
-			mgr.persist(customer);
+			mgr.persist(cust);
 		} finally {
 			mgr.close();
 		}
-		return customer;
+		return cust;
 	}
 
 	/**
@@ -154,15 +162,21 @@ public class CustomerEndpoint {
 	 * @return The updated entity.
 	 * @throws OAuthRequestException 
 	 */
-	@ApiMethod(name = "updateCustomer")
-	public Customer updateCustomer(Customer customer, User user) throws OAuthRequestException {
+	@ApiMethod(name = "updateCustomer", path = "{id}")
+	public Customer updateCustomer(@Named("id") String id, User user) throws OAuthRequestException {
 		EntityManager mgr = getEntityManager();
-		if(verifyCustomer(customer.getId(), user.getUserId()))
+		Customer customer;
+		if(user == null)
+		{
+			throw new OAuthRequestException("Not logged in");
+		}
+		if(verifyCustomer(id, user.getUserId()))
 		{
 			try {
-				if (!containsCustomer(customer)) {
+				if (!isACustomer(user)) {
 					throw new EntityNotFoundException("Object does not exist");
 				}
+				customer = getCustomer(id, user);
 				mgr.persist(customer);
 			} finally {
 				mgr.close();

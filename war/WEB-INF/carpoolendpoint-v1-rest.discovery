@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/jsfOlxv4ZxDukwe_FsCvOGrO9-Y\"",
+ "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/x-wjXGR0ymkMXNSWqw4avbykopM\"",
  "discoveryVersion": "v1",
  "id": "carpoolendpoint:v1",
  "name": "carpoolendpoint",
@@ -82,9 +82,9 @@
      "type": "string"
     },
     "driver": {
-     "$ref": "Customer"
+     "$ref": "Key"
     },
-    "key": {
+    "id": {
      "$ref": "Key"
     },
     "lastRoute": {
@@ -93,7 +93,7 @@
     "riders": {
      "type": "array",
      "items": {
-      "$ref": "Customer"
+      "$ref": "Key"
      }
     }
    }
@@ -109,30 +109,6 @@
      }
     },
     "nextPageToken": {
-     "type": "string"
-    }
-   }
-  },
-  "Customer": {
-   "id": "Customer",
-   "type": "object",
-   "properties": {
-    "car": {
-     "type": "string"
-    },
-    "email": {
-     "type": "string"
-    },
-    "firstName": {
-     "type": "string"
-    },
-    "key": {
-     "$ref": "Key"
-    },
-    "lastName": {
-     "type": "string"
-    },
-    "location": {
      "type": "string"
     }
    }

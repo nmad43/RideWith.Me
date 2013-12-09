@@ -27,27 +27,6 @@
   "ownerName" : "g5.com",
   "packagePath" : "ridewithme",
   "methods" : {
-    "customerendpoint.removeCustomer" : {
-      "path" : "customer/{id}",
-      "httpMethod" : "DELETE",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.g5.ridewithme.CustomerEndpoint.removeCustomer",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "empty"
-      }
-    },
     "customerendpoint.insertCustomer" : {
       "path" : "customer",
       "httpMethod" : "POST",
@@ -65,7 +44,7 @@
       }
     },
     "customerendpoint.updateCustomer" : {
-      "path" : "customer",
+      "path" : "{id}",
       "httpMethod" : "PUT",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
@@ -73,8 +52,13 @@
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
       "rosyMethod" : "com.g5.ridewithme.CustomerEndpoint.updateCustomer",
       "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
+        "parameters" : {
+          "id" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -116,7 +100,7 @@
       "request" : {
         "parameters" : {
           "id" : {
-            "type" : "int64",
+            "type" : "string",
             "required" : true
           }
         },
@@ -133,8 +117,8 @@
         "id" : "Customer",
         "type" : "object",
         "properties" : {
-          "key" : {
-            "$ref" : "Key"
+          "id" : {
+            "type" : "string"
           },
           "firstName" : {
             "type" : "string"
@@ -150,6 +134,12 @@
           },
           "car" : {
             "type" : "string"
+          },
+          "carpools" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Key"
+            }
           }
         }
       },
@@ -170,14 +160,14 @@
           "name" : {
             "type" : "string"
           },
+          "parent" : {
+            "$ref" : "Key"
+          },
           "complete" : {
             "type" : "boolean"
           },
           "namespace" : {
             "type" : "string"
-          },
-          "parent" : {
-            "$ref" : "Key"
           }
         }
       },
@@ -198,8 +188,6 @@
       }
     },
     "methods" : {
-      "com.g5.ridewithme.CustomerEndpoint.removeCustomer" : {
-      },
       "com.g5.ridewithme.CustomerEndpoint.insertCustomer" : {
         "request" : {
           "$ref" : "Customer"
@@ -209,9 +197,6 @@
         }
       },
       "com.g5.ridewithme.CustomerEndpoint.updateCustomer" : {
-        "request" : {
-          "$ref" : "Customer"
-        },
         "response" : {
           "$ref" : "Customer"
         }

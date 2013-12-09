@@ -8,8 +8,8 @@
 
   <groupId>com.google.apis</groupId>
   <artifactId>google-api-services-customerendpoint</artifactId>
-  <version>v1-rev20131203234158-1.16.0-rc</version>
-  <name>customerendpoint v1 (revision 20131203234158)</name>
+  <version>v1-rev20131208233211-1.16.0-rc</version>
+  <name>customerendpoint v1 (revision 20131208233211)</name>
   <packaging>jar</packaging>
 
   <inceptionYear>2011</inceptionYear>
