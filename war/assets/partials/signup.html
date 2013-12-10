@@ -1,0 +1,16 @@
+<h3>Signup today for free!</h3>
+
+<div class="alert alert-danger" ng-show="error">{{error}}</div>
+
+<form ng-submit="doSignup()">
+	<label>First Name</label>
+	<input type="text" class="input-large" ng-model="signup.fname" />
+	<label>Last Name</label>
+	<input type="text" class="input-large" ng-model="signup.lname" />
+	<label>Email Address</label>
+	<input type="text" class="input-large" placeholder="you@yoursite.com" ng-model="signup.email" />
+	<label>Password</label>
+	<input type="password" class="input-large" ng-model="signup.password" />
+	<br />
+	<button class="btn btn-large btn-primary">Signup</button>
+</form>

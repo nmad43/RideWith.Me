@@ -1,0 +1,126 @@
+<div class="text-center"><h2>Edit Carpool</h2></div>
+
+<hr>
+
+<div class="row-fluid marketing" style="margin-top: 0">
+	<div class="span12">
+		<h4 style="">Destination Address</h4>
+		<textarea class="input-block-level" style="height: 80px;"></textarea>
+
+		<div class="row-fluid">
+			<div class="span6">
+				<h4>Date</h4>
+				<input type="date" class="input-large" style="height: 30px;">
+			</div>
+			<div class="span6">
+				<h4>Start Time</h4>
+				<input type="time" style="height: 30px;">
+			</div>
+		</div>
+
+		<h4>Notes</h4>
+		<textarea class="input-block-level" style="height: 100px;"></textarea>
+	</div>
+
+
+</div>
+
+<div class="row-fluid">
+	<div class="span4">
+		<h4>Riders</h4>
+
+		<table class="table table-rounded table-bordered">
+			<tbody>
+				<tr>
+					<td>Elvis Presley</td>
+					<td style="text-align: center"><button class="btn btn-small btn-danger"><i class="icon-minus-sign icon-white"></i></button></td>
+				</tr>
+				<tr>
+					<td>Aaron Rodgers</td>
+					<td style="text-align: center"><button class="btn btn-small btn-danger"><i class="icon-minus-sign icon-white"></i></button></td>
+				</tr>
+				<tr>
+					<td>Tim Burners-Lee</td>
+					<td style="text-align: center"><button class="btn btn-small btn-danger"><i class="icon-minus-sign icon-white"></i></button></td>
+				</tr>
+				<tr>
+					<td>Tariq King</td>
+					<td style="text-align: center"><button class="btn btn-small btn-danger"><i class="icon-minus-sign icon-white"></i></button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="span4">
+		<h4>Friends</h4>
+
+		<table class="table table-rounded table-condensed table-bordered" style="margin-bottom: 0">
+			<tbody>
+				<tr>
+					<td><button class= "btn btn-success input-block-level">Nick Madariaga</button></td>
+				</tr>
+				<tr>
+					<td><button class="btn btn-success input-block-level">Sergio Pantoja</button></td>
+				</tr>
+				<tr>
+					<td><button class="btn btn-success input-block-level">Aris Mateos</button></td>
+				</tr>
+				<tr>
+					<td><button class="btn btn-success input-block-level">Erik Edrosa</button></td>
+				</tr>
+				<tr>
+					<td><button class="btn btn-success input-block-level">Juan Gonzalez</button></td>
+				</tr>
+			</tbody>
+		</table>
+		<button class="btn btn-link input-block-level">View all friends...</button>
+	</div>
+
+	<div class="span4">
+		<h4>Search</h4><input class="input-block-level" placeholder=
+		"Name..." type="text">
+		<h4>Add Guests</h4>
+		<p>Add users without a RideWith.Me account by entering their email address below.</p>
+		<div class="input-append">
+			<input class="span10" placeholder="guest@gmail.com" style="height: 30px;" type="text"><button class="btn">Add</button>
+		</div>
+	</div>
+</div>
+<hr>
+
+<div class="row-fluid">
+	<div class="span12">
+		<button class="btn btn-primary input-block-level" data-target="#myModal" data-toggle="modal" style="height: 100px">FINISH</button>
+	</div>
+</div>
+
+<div class="modal hide fade" id="myModal" tabindex="-1">
+	<div class="modal-header">
+		<button class="close" data-dismiss="modal" type="button">×</button>
+		<h3 id="myModalLabel">Confirm settings</h3>
+	</div>
+
+	<div class="modal-body">
+		<p>Please confirm your carpool.</p>
+		<h4>Final Destination</h4>
+		<address>
+			East Business Building<br>
+			200 Biscayne Blvd.<br>
+			Miami, FL 33123
+		</address>
+		<h4>Arrival Date &amp; Time</h4>
+		<p>Wednesday, March 31st, 2013 at 11am EST.</p>
+		<h4>Riders</h4>
+		<ol>
+			<li>Elvis Presley</li>
+			<li>Aaron Rodgers</li>
+			<li>Tim Burners-Lee</li>
+			<li>Tariq King</li>
+		</ol>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal">Close</button>
+		<button class="btn btn-primary">Save new carpool</button>
+	</div>
+</div>

@@ -1,11 +1,19 @@
 package com.g5.ridewithme;
 import java.io.IOException;
+
 import javax.servlet.http.*;
 
 @SuppressWarnings("serial")
-public class RideWith_MeServlet extends HttpServlet {
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		resp.setContentType("text/plain");
-		resp.getWriter().println("Hello, world");
+public class RideWith_MeServlet extends HttpServlet
+{
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
+	{
+		// this sample data is only used for demoing the app. To use with real data, you must register
+		// a Google Apps Engine (GAE) account, deploy the server, and populate the initial data through the
+		// GAE dashboard.
+		String sampleData = "{\"carpools\":[{\"name\":\"Carpool for Monday (12/9/2013)\",\"id\":0,\"description\":\"Daily commute to our shared workplace in Downtown Miami. We all work in the Business Building so it only makes sense to split up the cost of gas and parking. Plus our employers give us extra benefits for carpooling!\",\"riders\":[{\"email\":\"eedro001@fiu.edu\",\"amountOwed\":\"8.00\",\"paid\":true},{\"email\":\"nmada002@fiu.edu\",\"amountOwed\":\"8.00\",\"paid\":true},{\"email\":\"aaron@gmail.com\",\"amountOwed\":\"8.00\",\"paid\":false},{\"email\":\"spant004@fiu.edu\",\"amountOwed\":\"8.00\",\"paid\":false}],\"destination\":{\"name\":\"The LAB Miami\",\"address\":{\"line1\":\"400 NW 26th St.\",\"line2\":\"Miami, FL 33127\"}}},{\"name\":\"Carpool for Wednesday (12/11/2013)\",\"id\":1,\"description\":\"We are going to the zoo! Yes!\",\"riders\":[{\"email\":\"spant004@fiu.edu\",\"amountOwed\":\"6.54\",\"paid\":true},{\"email\":\"jgonz188@fiu.edu\",\"amountOwed\":\"6.54\",\"paid\":true},{\"email\":\"tim@gmail.com\",\"amountOwed\":\"6.54\",\"paid\":false}],\"destination\":{\"name\":\"ZOO MIAMI\",\"address\":{\"line1\":\"12400 SW 152nd St.\",\"line2\":\"Miami, FL 33177\"}}},{\"name\":\"Carpool for Friday (12/13/2013)\",\"id\":2,\"description\":\"End of the week carpool to our favorite karaoke bar. Cover at the door is $10. Nick is coming, so make sure you bring your earplugs...\",\"riders\":[{\"email\":\"elvis@gmail.com\",\"amountOwed\":\"12.95\",\"paid\":true},{\"email\":\"nmada002@fiu.edu\",\"amountOwed\":\"12.95\",\"paid\":false},{\"email\":\"amate012@fiu.edu\",\"amountOwed\":\"12.95\",\"paid\":false}],\"destination\":{\"address\":{\"line1\":\"13135 SW 89th Pl\",\"line2\":\"Miami, FL 33176\"},\"name\":\"Little Hoolie's\"}}],\"users\":{\"demo-user@gmail.com\":{\"email\":\"demo-user@gmail.com\",\"password\":\"abc123\",\"fname\":\"Demo\",\"lname\":\"User\"},\"elvis@gmail.com\":{\"email\":\"elvis@gmail.com\",\"password\":\"abc123\",\"fname\":\"Elvis\",\"lname\":\"Presley\",\"address\":{\"line1\":\"12602 SW 88th Street\",\"line2\":\"Miami, FL 33186\"}},\"aaron@gmail.com\":{\"email\":\"aaron@gmail.com\",\"password\":\"abc123\",\"fname\":\"Aaron\",\"lname\":\"Rodgers\",\"address\":{\"line1\":\"18001 Old Cutler Road\",\"line2\":\"Palmetto Bay, FL 33157\"}},\"tim@gmail.com\":{\"email\":\"tim@gmail.com\",\"password\":\"abc123\",\"fname\":\"Tim\",\"lname\":\"Burners-Lee\",\"address\":{\"line1\":\"8530 SW 124th Ave\",\"line2\":\"Miami, FL 33183\"}},\"tariq@gmail.com\":{\"email\":\"tariq@gmail.com\",\"password\":\"abc123\",\"fname\":\"Tariq\",\"lname\":\"King\",\"address\":{\"line1\":\"6161 Blue Lagoon Drive\",\"line2\":\"Miami, FL 33126\"}},\"eedro001@fiu.edu\":{\"email\":\"eedro001@fiu.edu\",\"password\":\"abc123\",\"fname\":\"Erik\",\"lname\":\"Edrosa\",\"address\":{\"line1\":\"866 South Dixie Highway\",\"line2\":\"Coral Gables, FL 33146\"}},\"nmada002@fiu.edu\":{\"email\":\"nmada002@fiu.edu\",\"password\":\"abc123\",\"fname\":\"Nick\",\"lname\":\"Madariaga\",\"address\":{\"line1\":\"14095 South Dixie Highway\",\"line2\":\"Miami, FL 33176\"}},\"amate012@fiu.edu\":{\"email\":\"amate012@fiu.edu\",\"password\":\"abc123\",\"fname\":\"Aris\",\"lname\":\"Mateos\",\"address\":{\"line1\":\"12895 SW 132nd Street\",\"line2\":\"Miami, FL 33186\"}},\"jgonz188@fiu.edu\":{\"email\":\"jgonz188@fiu.edu\",\"password\":\"abc123\",\"fname\":\"Juan\",\"lname\":\"Gonzalez\",\"address\":{\"line1\":\"14641 Biscayne Blvd\",\"line2\":\"North Miami Beach, FL \"}},\"spant004@fiu.edu\":{\"email\":\"spant004@fiu.edu\",\"password\":\"abc123\",\"fname\":\"Sergio\",\"lname\":\"Pantoja\",\"address\":{\"line1\":\"9050 Biscayne Blvd\",\"line2\":\"Miami Shores, FL 33138\"}}}}";
+		
+		resp.setContentType("application/json");
+		resp.getWriter().print(sampleData);
 	}
 }

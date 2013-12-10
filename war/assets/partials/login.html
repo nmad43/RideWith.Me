@@ -1,0 +1,12 @@
+<h3>Login</h3>
+
+<div class="alert alert-danger" ng-show="error">{{error}}</div>
+
+<form ng-submit="doLogin()">
+	<label>Email Address</label>
+	<input type="text" class="input-large" placeholder="you@yoursite.com" ng-model="login.email" />
+	<label>Password</label>
+	<input type="password" class="input-large" ng-model="login.password" />
+	<br />
+	<button class="btn btn-large btn-primary">Login</button>
+</form>
