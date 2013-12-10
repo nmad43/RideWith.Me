@@ -82,6 +82,7 @@
 	<div class="modal-body">
 		<p>Please confirm your carpool.</p>
 		<h4>Final Destination</h4>
+		<div class="alert alert-danger" ng-show="error">{{error}}</div>
 		<address>
 			{{newCarpool.destination.name}}<br>
 			{{newCarpool.destination.address.line1}}<br>
@@ -96,7 +97,7 @@
 	</div>
 
 	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal">Close</button>
-		<button class="btn btn-primary" data-dismiss="modal" ng-click="doCreate()">Save new carpool</button>
+		<button class="btn" ng-click="error = false" data-dismiss="modal">Close</button>
+		<button class="btn btn-primary" ng-click="checkAddress()">Save new carpool</button>
 	</div>
 </div>

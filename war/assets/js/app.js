@@ -109,14 +109,32 @@ angular.module('ridewithme').controller('DashboardCtrl', ['$rootScope', '$scope'
 	$rootScope.activePage = 'dashboard';
 }]);
 
-angular.module('ridewithme').controller('CreateCtrl', ['$rootScope', '$scope', '$location', function($rootScope, $scope, $location) {
+angular.module('ridewithme').controller('CreateCtrl', ['$rootScope', '$scope', '$timeout', '$location', function($rootScope, $scope, $timeout, $location) {
 	$rootScope.activePage = 'create';
 	$scope.newCarpool = {destination: '', date: '', time: '', description: '', riders: {}};
 	$scope.limit = 5;
-	$scope.doCreate = function() {
+	var geocoder = new google.maps.Geocoder();
+	var doCreate = function() {
 		$rootScope.carpools.push(angular.copy($scope.newCarpool));
 		$scope.newCarpool = {destination: '', date: '', time: '', description: '', riders: {}};
+		$scope.error = false;
 		$location.path('dashboard');
+	};
+	$scope.checkAddress = function() {
+		geocoder.geocode({
+			address: $scope.newCarpool.destination.address.line1 + ', ' + $scope.newCarpool.destination.address.line2
+		}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				$timeout(function() {
+					doCreate();
+				});
+			}
+			else {
+				$timeout(function() {
+					$scope.error = 'Invalid address. Please fix it and try again.';
+				});
+			}
+		});
 	};
 	$scope.getUsers = function() {
 		var results = {};
