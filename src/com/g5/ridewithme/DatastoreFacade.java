@@ -49,7 +49,7 @@ public class DatastoreFacade {
 		boolean contains = true;
 		try {
 			Customer item = mgr.find(Customer.class, UserId);
-			if (!item.getId().equals(id)) {
+			if (item == null || !item.getId().equals(id)) {
 				contains = false;
 			}
 		} finally {
