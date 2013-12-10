@@ -5,21 +5,23 @@
 <div class="row-fluid marketing" style="margin-top: 0">
 	<div class="span12">
 		<h4 style="">Destination Address</h4>
-		<textarea class="input-block-level" style="height: 80px;"></textarea>
+		<input type="text" style="height: 30px;" placeholder="LOCATION NAME" ng-model="newCarpool.destination.name" /><br />
+		<input type="text" style="height: 30px;" placeholder="314 Park Street" ng-model="newCarpool.destination.address.line1" /><br />
+		<input type="text" style="height: 30px;" placeholder="Miami, FL 33174" ng-model="newCarpool.destination.address.line2" />
 
 		<div class="row-fluid">
 			<div class="span6">
 				<h4>Date</h4>
-				<input type="date" class="input-large" style="height: 30px;">
+				<input type="date" class="input-large" style="height: 30px;" ng-model="newCarpool.date">
 			</div>
 			<div class="span6">
 				<h4>Start Time</h4>
-				<input type="time" style="height: 30px;">
+				<input type="time" style="height: 30px;" ng-model="newCarpool.time">
 			</div>
 		</div>
 
 		<h4>Notes</h4>
-		<textarea class="input-block-level" style="height: 100px;"></textarea>
+		<textarea class="input-block-level" style="height: 100px;" ng-model="newCarpool.description"></textarea>
 	</div>
 
 
@@ -31,21 +33,9 @@
 
 		<table class="table table-rounded table-bordered">
 			<tbody>
-				<tr>
-					<td>Elvis Presley</td>
-					<td style="text-align: center"><button class="btn btn-small btn-danger"><i class="icon-minus-sign icon-white"></i></button></td>
-				</tr>
-				<tr>
-					<td>Aaron Rodgers</td>
-					<td style="text-align: center"><button class="btn btn-small btn-danger"><i class="icon-minus-sign icon-white"></i></button></td>
-				</tr>
-				<tr>
-					<td>Tim Burners-Lee</td>
-					<td style="text-align: center"><button class="btn btn-small btn-danger"><i class="icon-minus-sign icon-white"></i></button></td>
-				</tr>
-				<tr>
-					<td>Tariq King</td>
-					<td style="text-align: center"><button class="btn btn-small btn-danger"><i class="icon-minus-sign icon-white"></i></button></td>
+				<tr ng-repeat="(key, value) in newCarpool.riders">
+					<td>{{users[key].fname}} {{users[key].lname}}</td>
+					<td style="text-align: center"><button class="btn btn-small btn-danger" ng-click="removeRider(key)"><i class="icon-minus-sign icon-white"></i></button></td>
 				</tr>
 			</tbody>
 		</table>
@@ -56,24 +46,13 @@
 
 		<table class="table table-rounded table-condensed table-bordered" style="margin-bottom: 0">
 			<tbody>
-				<tr>
-					<td><button class= "btn btn-success input-block-level">Nick Madariaga</button></td>
-				</tr>
-				<tr>
-					<td><button class="btn btn-success input-block-level">Sergio Pantoja</button></td>
-				</tr>
-				<tr>
-					<td><button class="btn btn-success input-block-level">Aris Mateos</button></td>
-				</tr>
-				<tr>
-					<td><button class="btn btn-success input-block-level">Erik Edrosa</button></td>
-				</tr>
-				<tr>
-					<td><button class="btn btn-success input-block-level">Juan Gonzalez</button></td>
+				<tr ng-repeat="(key, value) in getUsers() | limitObjectTo:limit">
+					<td><button class="btn btn-success input-block-level" ng-click="addRider(key)">{{value.fname}} {{value.lname}}</button></td>
 				</tr>
 			</tbody>
 		</table>
-		<button class="btn btn-link input-block-level">View all friends...</button>
+		<button class="btn btn-link input-block-level" ng-show="limit == 5" ng-click="limit = 100">View all friends...</button>
+		<button class="btn btn-link input-block-level" ng-show="limit > 5" ng-click="limit = 5">View less friends...</button>
 	</div>
 
 	<div class="span4">
@@ -104,23 +83,20 @@
 		<p>Please confirm your carpool.</p>
 		<h4>Final Destination</h4>
 		<address>
-			East Business Building<br>
-			200 Biscayne Blvd.<br>
-			Miami, FL 33123
+			{{newCarpool.destination.name}}<br>
+			{{newCarpool.destination.address.line1}}<br>
+			{{newCarpool.destination.address.line2}}
 		</address>
 		<h4>Arrival Date &amp; Time</h4>
-		<p>Wednesday, March 31st, 2013 at 11am EST.</p>
+		<p>{{newCarpool.date}} at {{newCarpool.time}}</p>
 		<h4>Riders</h4>
 		<ol>
-			<li>Elvis Presley</li>
-			<li>Aaron Rodgers</li>
-			<li>Tim Burners-Lee</li>
-			<li>Tariq King</li>
+			<li ng-repeat="(key, value) in newCarpool.riders">{{users[key].fname}} {{users[key].lname}}</li>
 		</ol>
 	</div>
 
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal">Close</button>
-		<button class="btn btn-primary">Save new carpool</button>
+		<button class="btn btn-primary" data-dismiss="modal" ng-click="doCreate()">Save new carpool</button>
 	</div>
 </div>

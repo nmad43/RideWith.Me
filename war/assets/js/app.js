@@ -53,6 +53,17 @@ angular.module('ridewithme').run(['$rootScope', '$location', '$http', function($
 	});
 }]);
 
+angular.module('ridewithme').filter('limitObjectTo', function() {
+	return function(obj, limit) {
+		var newObj = {}, i = 0, p;
+		for (p in obj) {
+			newObj[p] = obj[p];
+			if (++i === limit) break;
+		}
+		return newObj;
+	};
+});
+
 angular.module('ridewithme').controller('IndexCtrl', ['$rootScope', '$scope', function($rootScope, $scope) {
 	$rootScope.activePage = 'index';
 	$scope.loggedIn = $rootScope.loggedIn;
@@ -98,12 +109,30 @@ angular.module('ridewithme').controller('DashboardCtrl', ['$rootScope', '$scope'
 	$rootScope.activePage = 'dashboard';
 }]);
 
-angular.module('ridewithme').controller('CreateCtrl', ['$rootScope', '$scope', function($rootScope, $scope) {
+angular.module('ridewithme').controller('CreateCtrl', ['$rootScope', '$scope', '$location', function($rootScope, $scope, $location) {
 	$rootScope.activePage = 'create';
+	$scope.newCarpool = {destination: '', date: '', time: '', description: '', riders: {}};
+	$scope.limit = 5;
 	$scope.doCreate = function() {
 		$rootScope.carpools.push(angular.copy($scope.newCarpool));
-		$scope.newCarpool = {destination: '', date: '', description: '', riders: []};
-	}
+		$scope.newCarpool = {destination: '', date: '', time: '', description: '', riders: {}};
+		$location.path('dashboard');
+	};
+	$scope.getUsers = function() {
+		var results = {};
+		angular.forEach($rootScope.users, function(value, key) {
+			if (!angular.isDefined($scope.newCarpool.riders[key])) {
+				results[key] = value;
+			}
+		});
+		return results;
+	};
+	$scope.addRider = function(key) {
+		$scope.newCarpool.riders[key] = {email: key, amountOwed: 0, paid: true};
+	};
+	$scope.removeRider = function(key) {
+		delete $scope.newCarpool.riders[key];
+	};
 }]);
 
 angular.module('ridewithme').controller('ViewCtrl', ['$rootScope', '$scope', '$routeParams', '$http', function($rootScope, $scope, $routeParams, $http) {
