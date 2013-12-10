@@ -58,7 +58,8 @@
             "required" : true
           }
         },
-        "body" : "empty"
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -163,11 +164,11 @@
           "parent" : {
             "$ref" : "Key"
           },
-          "complete" : {
-            "type" : "boolean"
-          },
           "namespace" : {
             "type" : "string"
+          },
+          "complete" : {
+            "type" : "boolean"
           }
         }
       },
@@ -197,6 +198,9 @@
         }
       },
       "com.g5.ridewithme.CustomerEndpoint.updateCustomer" : {
+        "request" : {
+          "$ref" : "Customer"
+        },
         "response" : {
           "$ref" : "Customer"
         }

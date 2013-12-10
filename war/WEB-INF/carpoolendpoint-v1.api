@@ -63,7 +63,7 @@
       "request" : {
         "parameters" : {
           "id" : {
-            "type" : "int64",
+            "type" : "string",
             "required" : true
           }
         },
@@ -100,7 +100,7 @@
       "request" : {
         "parameters" : {
           "id" : {
-            "type" : "int64",
+            "type" : "string",
             "required" : true
           }
         },
@@ -188,11 +188,11 @@
           "parent" : {
             "$ref" : "Key"
           },
-          "complete" : {
-            "type" : "boolean"
-          },
           "namespace" : {
             "type" : "string"
+          },
+          "complete" : {
+            "type" : "boolean"
           }
         }
       }
