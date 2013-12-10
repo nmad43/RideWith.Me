@@ -106,9 +106,40 @@ angular.module('ridewithme').controller('CreateCtrl', ['$rootScope', '$scope', f
 	}
 }]);
 
-angular.module('ridewithme').controller('ViewCtrl', ['$rootScope', '$scope', '$routeParams', function($rootScope, $scope, $routeParams) {
+angular.module('ridewithme').controller('ViewCtrl', ['$rootScope', '$scope', '$routeParams', '$http', function($rootScope, $scope, $routeParams, $http) {
 	$rootScope.activePage = 'view';
 	$scope.current = $rootScope.carpools[$routeParams.carpoolId];
+	var waypoints = [];
+	var directionsDisplay = new google.maps.DirectionsRenderer();
+	var fiu = new google.maps.LatLng(25.758658, -80.37617);
+	var mapOptions = {
+		zoom: 7,
+		center: fiu
+	}
+	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+	directionsDisplay.setMap(map);
+	
+	for (var i = 0; i < $scope.current.riders.length; i++) {
+		waypoints.push({
+			location: $rootScope.users[$scope.current.riders[i].email].address.line1 + ', ' + $rootScope.users[$scope.current.riders[i].email].address.line2,
+			stopover: false
+		});
+	}
+	
+	var directionsService = new google.maps.DirectionsService();
+	directionsService.route({
+		origin: '11200 SW 8th St, Miami, FL 33174',
+		destination: $scope.current.destination.address.line1 + ', ' + $scope.current.destination.address.line2,
+		travelMode: google.maps.TravelMode.DRIVING,
+		waypoints: waypoints,
+		optimizeWaypoints: true,
+		provideRouteAlternatives: false
+	}, function(result, status) {
+		console.log(result, status);
+		if (status == google.maps.DirectionsStatus.OK) {
+			directionsDisplay.setDirections(result);
+		}
+	});
 }]);
 
 angular.module('ridewithme').controller('SettingsCtrl', ['$rootScope', '$scope', function($rootScope, $scope) {
